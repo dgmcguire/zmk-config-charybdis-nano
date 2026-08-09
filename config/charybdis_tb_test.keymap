@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2026 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * Trackball-only bring-up: no keys. Cursor motion comes from the
+ * PMW3610 input-listener in the shield overlay.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+	keymap {
+		compatible = "zmk,keymap";
+
+		default_layer {
+			bindings = <>;
+		};
+	};
+};

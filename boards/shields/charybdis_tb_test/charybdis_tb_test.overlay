@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2026 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * USB-only PMW3610 bring-up on Seeed XIAO BLE.
+ * Wiring (XIAO → PMW3610):
+ *   D6 / P1.11 → NCS
+ *   D7 / P1.12 → MOTION
+ *   D8 / P1.13 → SCLK
+ *   D10 / P1.15 → SDIO
+ */
+
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	chosen {
+		zmk,kscan = &mock_kscan;
+	};
+
+	mock_kscan: mock_kscan_0 {
+		compatible = "zmk,kscan-mock";
+		columns = <1>;
+		rows = <0>;
+		events = <>;
+	};
+
+	trackball_listener {
+		compatible = "zmk,input-listener";
+		device = <&trackball>;
+	};
+};
+
+/* Free P1.11 / P1.12 (D6 / D7) from the board UART pinmux. */
+&uart0 {
+	status = "disabled";
+};
+
+&pinctrl {
+	spi2_default: spi2_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+				<NRF_PSEL(SPIM_MOSI, 1, 15)>,
+				<NRF_PSEL(SPIM_MISO, 1, 15)>;
+		};
+	};
+
+	spi2_sleep: spi2_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+				<NRF_PSEL(SPIM_MOSI, 1, 15)>,
+				<NRF_PSEL(SPIM_MISO, 1, 15)>;
+			low-power-enable;
+		};
+	};
+};
+
+&spi2 {
+	compatible = "nordic,nrf-spim";
+	status = "okay";
+	pinctrl-0 = <&spi2_default>;
+	pinctrl-1 = <&spi2_sleep>;
+	pinctrl-names = "default", "sleep";
+	cs-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+
+	trackball: trackball@0 {
+		compatible = "pixart,pmw3610-alt";
+		status = "okay";
+		reg = <0>;
+		spi-max-frequency = <2000000>;
+		irq-gpios = <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+		cpi = <600>;
+		evt-type = <INPUT_EV_REL>;
+		x-input-code = <INPUT_REL_X>;
+		y-input-code = <INPUT_REL_Y>;
+		force-awake;
+		force-awake-4ms-mode;
+	};
+};

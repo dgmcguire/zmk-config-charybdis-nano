@@ -1,0 +1,12 @@
+# Copyright (c) 2026 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_CHARYBDIS_TB_TEST
+
+config ZMK_KEYBOARD_NAME
+	default "Charybdis TB"
+
+config ZMK_USB
+	default y
+
+endif
