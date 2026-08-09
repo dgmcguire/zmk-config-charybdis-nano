@@ -1,0 +1,5 @@
+/*
+ * Low-power variant: no force-awake; sensor uses normal RUN/REST downshift.
+ */
+
+#include "charybdis_tb_test.dtsi"

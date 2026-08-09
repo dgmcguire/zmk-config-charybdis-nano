@@ -1,5 +1,5 @@
 file_format: "1"
-id: charybdis_tb_test
+id: charybdis_tb
 name: Charybdis Trackball Test
 type: shield
 url: https://github.com/dgmcguire/zmk-config-charybdis-nano
@@ -7,3 +7,6 @@ requires: []
 features:
   - keys
   - pointing
+siblings:
+  - charybdis_tb_test
+  - charybdis_tb_test_lp

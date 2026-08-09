@@ -3,3 +3,6 @@
 
 config SHIELD_CHARYBDIS_TB_TEST
 	def_bool $(shields_list_contains,charybdis_tb_test)
+
+config SHIELD_CHARYBDIS_TB_TEST_LP
+	def_bool $(shields_list_contains,charybdis_tb_test_lp)
