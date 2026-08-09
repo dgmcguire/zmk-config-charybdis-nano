@@ -9,4 +9,4 @@ features:
   - pointing
 siblings:
   - charybdis_tb_test
-  - charybdis_tb_test_lp
+  - charybdis_tb_lp

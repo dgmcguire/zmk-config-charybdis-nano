@@ -26,7 +26,7 @@ GitHub Actions builds on push. Download the `firmware` artifact:
 | UF2 | Use |
 |-----|-----|
 | `charybdis_tb_test-seeeduino_xiao_ble-zmk.uf2` | **High power** — force-awake sensor, snappy USB bring-up |
-| `charybdis_tb_test_lp-seeeduino_xiao_ble-zmk.uf2` | **Low power** — normal sensor downshift + ZMK sleep |
+| `charybdis_tb_lp-seeeduino_xiao_ble-zmk.uf2` | **Low power** — normal sensor downshift + ZMK sleep |
 | `settings_reset-seeeduino_xiao_ble-zmk.uf2` | Clear settings/bonds only if needed |
 
 ### Suggested test order

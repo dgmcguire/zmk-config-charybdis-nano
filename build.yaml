@@ -7,4 +7,4 @@ include:
     shield: charybdis_tb_test
 
   - board: seeeduino_xiao_ble
-    shield: charybdis_tb_test_lp
+    shield: charybdis_tb_lp
