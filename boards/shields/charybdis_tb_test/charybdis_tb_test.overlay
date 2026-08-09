@@ -16,13 +16,22 @@
 / {
 	chosen {
 		zmk,kscan = &mock_kscan;
+		zmk,matrix_transform = &default_transform;
 	};
 
+	/* One dummy key so the keymap can satisfy ZMK's bindings requirement. */
 	mock_kscan: mock_kscan_0 {
 		compatible = "zmk,kscan-mock";
 		columns = <1>;
-		rows = <0>;
+		rows = <1>;
 		events = <>;
+	};
+
+	default_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+		columns = <1>;
+		rows = <1>;
+		map = <RC(0,0)>;
 	};
 
 	trackball_listener {
