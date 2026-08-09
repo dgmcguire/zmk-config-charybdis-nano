@@ -5,6 +5,7 @@ include:
 
   - board: seeeduino_xiao_ble
     shield: charybdis_tb_test
+    snippet: zmk-usb-logging
 
   - board: seeeduino_xiao_ble
     shield: charybdis_tb_lp
